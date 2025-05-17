@@ -25,6 +25,36 @@ return {
     end,
   },
 
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      local dap = require("dap")
+
+      dap.adapters.lldb = {
+        type = "executable",
+        command = "/usr/lib/llvm-14/bin/lldb-vscode", -- Adjust this if lldb-vscode is in a different location
+        name = "lldb"
+      }
+
+      dap.configurations.c = {
+        {
+          name = "Launch",
+          type = "lldb",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+          args = {},
+        },
+      }
+
+      -- Optional: reuse for C++
+      dap.configurations.cpp = dap.configurations.c
+    end,
+  }
+
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {

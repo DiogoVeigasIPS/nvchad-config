@@ -4,8 +4,34 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+-- General Stuff
+
 map("n", "<leader>z", "<cmd>ZenMode<CR>", { desc = "Toggle Zen Mode" })
 map('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Action' })
+
+-- Debugging
+--
+map('n', '<leader>db', function()
+  require 'dap'.toggle_breakpoint()
+end, { desc = 'DAP - Toggle Breakpoint' })
+
+map('n', '<leader>dc', function()
+  require 'dap'.continue()
+end, { desc = 'DAP - Start/Pause' })
+
+map('n', '<leader>do', function()
+  require 'dap'.step_over()
+end, { desc = 'DAP - Step Over' })
+
+map('n', '<leader>di', function()
+  require 'dap'.step_into()
+end, { desc = 'DAP - Step Into' })
+
+map('n', '<leader>dh', function()
+  require('dap.ui.widgets').hover()
+end, { desc = "DAP - Hover" })
+
+-- Default
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
