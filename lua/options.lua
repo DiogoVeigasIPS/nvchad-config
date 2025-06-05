@@ -4,6 +4,8 @@ require "nvchad.options"
 local opt = vim.opt
 
 opt.relativenumber = true
+opt.numberwidth = 8
+opt.signcolumn = "yes:2"
 
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!

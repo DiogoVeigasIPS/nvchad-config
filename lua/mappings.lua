@@ -9,8 +9,17 @@ local map = vim.keymap.set
 map("n", "<leader>z", "<cmd>ZenMode<CR>", { desc = "Toggle Zen Mode" })
 map('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Action' })
 
--- Debugging
+-- Break paragraphs and unbreak paragraphs
+
+-- map('n', "gqap", "this is just a reminder",
+--   { desc = "Breaks a line in many smaller lines" }
+-- )
 --
+-- map('n', "J", "this is just a reminder",
+--   { desc = "Rejoins selected broke lines" }
+-- )
+
+-- Debugging
 map('n', '<leader>db', function()
   require 'dap'.toggle_breakpoint()
 end, { desc = 'DAP - Toggle Breakpoint' })
